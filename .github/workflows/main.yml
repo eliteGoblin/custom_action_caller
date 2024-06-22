@@ -1,0 +1,24 @@
+name: My Workflow
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+    #   - name: Run My Awesome Action
+    #     uses: eliteGoblin/custom_gha_playground@v1
+    #     with:
+    #       myInput: 'value'
+      - name: Hello world action step
+        uses: eliteGoblin/custom_gha_playground@v1
+        id: hello
+        with:
+            who-to-greet: 'Mona the Octocat'
+        # Use the output from the `hello` step
+      - name: Get the output time
+        run: echo "The time was ${{ steps.hello.outputs.time }}"
